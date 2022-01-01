@@ -9,7 +9,7 @@ repos:
 include:
   - common/fedora-sodalite-common.yaml
 add-files: [
-  ["include/variant-templates/sodalite-variant_sodalite-caral", "/etc/sodalite-variant"]
+  ["include/configs/sodalite-variant_caral", "/etc/sodalite-variant"]
 ]
 
 rojig:
