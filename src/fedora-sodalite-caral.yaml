@@ -1,0 +1,16 @@
+ref: fedora/35/${basearch}/sodalite-caral
+repos:
+  - copr-jose_exposito-touchegg
+  - fedora-35
+  - fedora-35-updates
+include:
+  - common/fedora-sodalite-common.yaml
+add-files: [
+  ["include/variant-templates/sodalite-variant_sodalite-caral", "/etc/sodalite-variant"]
+]
+
+rojig:
+  name: fedora-sodalite-caral
+  summary: "Sodalite Caral"
+  license: MIT
+  description: "(todo)"

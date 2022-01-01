@@ -1,0 +1,13 @@
+ref: fedora/35/${basearch}/sodalite-laptop
+repos:
+  - copr-jose_exposito-touchegg
+  - fedora-35
+  - fedora-35-updates
+include:
+  - common/fedora-sodalite-common.yaml
+
+rojig:
+  name: fedora-sodalite
+  summary: "Sodalite"
+  license: MIT
+  description: "Sodalite, with more agressive tweaks for laptops (or other portable devices!)"
