@@ -1,8 +1,11 @@
 ref: fedora/35/${basearch}/sodalite-caral
+packages:
+  - code
 repos:
   - copr-jose_exposito-touchegg
   - fedora-35
   - fedora-35-updates
+  - microsoft-vs-code
 include:
   - common/fedora-sodalite-common.yaml
 add-files: [
