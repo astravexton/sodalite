@@ -5,7 +5,7 @@ repos:
   - copr-jose_exposito-touchegg
   - fedora-35
   - fedora-35-updates
-  - microsoft-vs-code
+  - microsoft-vscode
 include:
   - common/fedora-sodalite-common.yaml
 add-files: [
