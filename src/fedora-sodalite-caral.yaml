@@ -8,6 +8,7 @@ repos:
   - microsoft-vscode
 include:
   - common/fedora-sodalite-common.yaml
+  - common/packages/elementary-sdk-pkgs.yaml
 add-files: [
   ["include/configs/sodalite-variant_caral", "/etc/sodalite-variant"]
 ]
