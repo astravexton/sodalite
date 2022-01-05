@@ -2,18 +2,18 @@
 
 set -xeuo pipefail
 
-VARIANT_ID=$(sodalite-get-variant id)
-VARIANT_NAME=$(sodalite-get-variant name)
+variant_id=$(sodalite-get-variant id)
+variant_name=$(sodalite-get-variant name)
 
 function set_osrelease_property() {
-    PROPERTY=$1
-    VALUE=$2
+    property=$1
+    value=$2
 
-    if [[ $VALUE =~ [[:space:]]+ ]]; then
-        VALUE="\"$VALUE\""
+    if [[ $value =~ [[:space:]]+ ]]; then
+        value="\"$value\""
     fi
 
-    sed -i "s/^\($PROPERTY=\)\(.*\)$/\1$VALUE/g" /etc/os-release
+    sed -i "s/^\($property=\)\(.*\)$/\1$value/g" /etc/os-release
 }
 
 # BUG: https://github.com/projectatomic/rpm-ostree/issues/1542#issuecomment-419684977
@@ -38,14 +38,16 @@ for x in /usr/sbin/glibc_post_upgrade.*; do
 done
 
 # TODO: Work out the correct way to do this, since this isn't!
-set_osrelease_property "ID" $VARIANT_ID
-set_osrelease_property "NAME" $VARIANT_NAME
-set_osrelease_property "PRETTY_NAME" "$VARIANT_NAME 35"
+set_osrelease_property "ID" $variant_id
+set_osrelease_property "NAME" $variant_name
+set_osrelease_property "PRETTY_NAME" "$variant_name 35"
 set_osrelease_property "VERSION" "35"
 
 # TODO: Get default wallpaper from gschema
 ln -s /usr/share/backgrounds/default/karsten-wurth-7BjhtdogU3A-unsplash.jpg /usr/share/backgrounds/elementaryos-default
 
 glib-compile-schemas /usr/share/glib-2.0/schemas
+
 systemctl enable sodalite-generate-oem
 systemctl enable sodalite-install-appcenter-flatpak
+systemctl enable touchegg
