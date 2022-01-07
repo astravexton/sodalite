@@ -1,6 +1,6 @@
 ref: fedora/35/${basearch}/sodalite
 repos:
-  - copr-jose_exposito-touchegg
+  - copr_decathorpe_elementary-staging
   - fedora-35
   - fedora-35-updates
 include:
