@@ -60,6 +60,22 @@ function get_cpu_vendor() {
     echo $cpu_vendor
 }
 
+function get_file_age() {
+    file=$1
+
+    if [[ -f $file ]]; then
+        echo $(($(date +%s) - $(date +%s -r "$file")))
+    else
+        echo "0"
+    fi
+}
+
+function get_http_code() {
+    url=$1
+
+    curl -s -o /dev/null --head -w "%{http_code}" -X GET "$url"
+}
+
 function get_hwinfo() {
     key=$1
     type=$2
@@ -67,6 +83,11 @@ function get_hwinfo() {
     [[ -z $type ]] && type="1"
 
     sudo dmidecode -t$type | grep "$key:" | sed 's/\t'"${key}"': //g'
+}
+
+function get_osrelease_item() {
+    item=$1
+    echo $(grep -oP '(?<=^'"$item"'=).+' /etc/os-release | tr -d '"')
 }
 
 function set_export() {
