@@ -72,6 +72,7 @@ exclude-packages:
   - gnome-tour # GNOME is impossible to reach, so we don't need this
 default_target: graphical.target
 remove-from-packages: [
+  ["fedora-workstation-backgrounds", "/usr/share/backgrounds/*"],
   ["gnome-session-wayland-session", "/usr/share/wayland-sessions/*"],
   ["gnome-session-xsession", "/usr/share/xsessions/*"],
   ["plank", "/etc/xdg/autostart/plank.desktop"]
