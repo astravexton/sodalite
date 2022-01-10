@@ -60,13 +60,34 @@ function get_cpu_vendor() {
     echo $cpu_vendor
 }
 
+function get_config_item() {
+    config_file=$1
+    item=$2
+    echo $(grep -oP '(?<=^'"$item"'=).+' $config_file | tr -d '"')
+}
+
+function get_http_code() {
+    url=$1
+    echo $(curl -s -o /dev/null --head -w "%{http_code}" "$url")
+}
+
 function get_hwinfo() {
     key=$1
     type=$2
 
     [[ -z $type ]] && type="1"
 
-    sudo dmidecode -t$type | grep "$key:" | sed 's/\t'"${key}"': //g'
+    value=$(dmidecode -t$type | grep "$key:" | sed 's/\t'"${key}"': //g')
+
+    if [[ -z value ]]; then
+        echo "Unknown $key"
+    else
+        echo $value
+    fi
+}
+
+function get_sudo_user() {
+    echo $SUDO_USER
 }
 
 function set_export() {
@@ -82,6 +103,17 @@ function test_root() {
         echoc error "Permission denied (are you root?)"
         exit $ERROR_NOT_ROOT
     fi
+}
+
+function write_emoji() {
+    emoji=$1
+    emoji_length=${#emoji}
+
+    case $emoji_length in
+        3) echoc "$emoji  " ;;
+        2) echoc "$emoji " ;;
+        *) echoc "$emoji" ;;
+    esac
 }
 
 set_export SODALITE_TOOLS_DEBUG false
